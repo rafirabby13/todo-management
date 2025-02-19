@@ -1,8 +1,32 @@
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddTask = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {user} = useAuth()
+ const navigate = useNavigate()
+  const { register, handleSubmit,reset  } = useForm();
+  const onSubmit = (data) => {
+    // console.log(data)
+    const taskData ={...data, email: user?.email}
+    axios.post('http://localhost:5000/tasks', taskData)
+    .then(res=>{
+      console.log('res.data ',res.data)
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        reset()
+        navigate('/')
+      }
+    })
+  };
   return (
     <div>
       <div className="hero bg-base-200 ">
@@ -33,6 +57,19 @@ const AddTask = () => {
                   type="text"
                   placeholder="Task Description"
                   className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Your Email</span>
+                </label>
+                <input
+                 
+                  type="text"
+                  defaultValue={user?.email}
+                 
+                  className="input input-bordered"
+                  disabled
                 />
               </div>
 
