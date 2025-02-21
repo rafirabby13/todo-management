@@ -1,65 +1,67 @@
-# Short Description
+<h2 align="left">To-Do Management App</h2>
 
-This is a Task Management Application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. Tasks are categorized into three sections: To-Do, In Progress, and Done. Users must be authenticated via Firebase to access the app, and all changes are saved instantly in the MongoDB database to ensure persistence.
+###
 
+<p align="left">This is a Task Management Application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. Tasks are categorized into three sections: To-Do, In Progress, and Done. Users must be authenticated via Firebase to access the app, and all changes are saved instantly in the MongoDB database to ensure persistence.</p>
 
-# Live Links
-Live Demo: https://todo-assignment-bbaaf.web.app/
+###
 
-# Dependencies
+<h2 align="left">Live Site: https://todo-assignment-bbaaf.web.app/</h2>
 
-"dependencies": {
-  "@dnd-kit/core": "^6.3.1",
-  "@dnd-kit/react": "^0.0.9",
-  "@tanstack/react-query": "^5.66.7",
-  "axios": "^1.7.9",
-  "firebase": "^11.3.1",
-  "immutability-helper": "^3.1.1",
-  "moment": "^2.30.1",
-  "react": "^19.0.0",
-  "react-dnd": "^16.0.1",
-  "react-dnd-html5-backend": "^16.0.1",
-  "react-dom": "^19.0.0",
-  "react-hook-form": "^7.54.2",
-  "react-icons": "^5.5.0",
-  "react-router-dom": "^7.2.0",
-  "sweetalert2": "^11.17.2"
-}
+###
 
-#  Installation Steps
+<h2 align="left">Dependencies</h2>
 
-1. git clone <repo-link>
-2. cd todo-client  # Navigate to the frontend folder
-3. npm run dev
+###
 
-# Technologies Used
+<p align="left">"dependencies": {<br>  "@dnd-kit/core": "^6.3.1",<br>  "@dnd-kit/react": "^0.0.9",<br>  "@tanstack/react-query": "^5.66.7",<br>  "axios": "^1.7.9",<br>  "firebase": "^11.3.1",<br>  "immutability-helper": "^3.1.1",<br>  "moment": "^2.30.1",<br>  "react": "^19.0.0",<br>  "react-dnd": "^16.0.1",<br>  "react-dnd-html5-backend": "^16.0.1",<br>  "react-dom": "^19.0.0",<br>  "react-hook-form": "^7.54.2",<br>  "react-icons": "^5.5.0",<br>  "react-router-dom": "^7.2.0",<br>  "sweetalert2": "^11.17.2"<br>}</p>
 
-# Frontend:
+###
 
-React (Vite.js)
-React DND (Drag & Drop)
-Tailwind CSS (UI Styling)
-React Query (State Management)
-Firebase (Authentication)
+<h2 align="left">Installation Steps</h2>
 
-# Backend:
+###
 
-Node.js & Express (Server-side)
-MongoDB (Database)
-Mongoose (MongoDB ORM)
-Cors & Dotenv (Security & Configuration)
+<p align="left">1. git clone<br>2. cd todo-client # Navigate to the <br>3. frontend folder<br>4. npm run dev</p>
 
-# Features
+###
 
-✅ User Authentication (Google Sign-in via Firebase)
-✅ Create, Edit, Delete, and Reorder Tasks
-✅ Drag & Drop Functionality
-✅ Real-time Database Synchronization
-✅ Responsive UI for Mobile & Desktop
-✅ Modern UI with Tailwind CSS
+<h2 align="left">Technologies Used</h2>
 
-# Future Improvements
+###
 
-1. Dark Mode Toggle
-2. Due Dates with Color Indicators
-3. Activity Log to Track Changes
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" height="40" alt="react logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain-wordmark.svg" height="40" alt="mongodb logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40" alt="tailwindcss logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" height="40" alt="npm logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg" height="40" alt="html5 logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" height="40" alt="css3 logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" height="40" alt="javascript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" height="40" alt="firebase logo"  />
+</div>
+
+###
+
+<h2 align="left">Features</h2>
+
+###
+
+<p align="left">✅ User Authentication (Google Sign-in via Firebase)<br>✅ Create, Edit, Delete, and Reorder Tasks<br>✅ Drag & Drop Functionality<br>✅ Real-time Database Synchronization<br>✅ Responsive UI for Mobile & Desktop<br>✅ Modern UI with Tailwind CSS</p>
+
+###
+
+<h2 align="left">Future Improvements</h2>
+
+###
+
+<p align="left">1. Dark Mode Toggle<br>2. Due Dates with Color Indicators<br>3. Activity Log to Track Changes</p>
+
+###
