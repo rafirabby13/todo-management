@@ -7,18 +7,24 @@ import { Route } from "react-router";
 import AddTask from "./Page/AddTask/AddTask.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import Login from "./Page/Login/Login.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import UpdateTask from "./Page/Home/UpdateTask.jsx";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="/add" element={<AddTask />} />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}></Route>
             <Route path="/login" element={<Login />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+            <Route path="/task/:id" element={<UpdateTask />} />
+            <Route path="/add" element={<AddTask />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

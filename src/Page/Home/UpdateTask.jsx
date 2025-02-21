@@ -1,34 +1,48 @@
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 import moment from "moment";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import useGetTasks from "../../hooks/useGetTasks";
 
-const AddTask = () => {
-  const {user} = useAuth()
- const navigate = useNavigate()
-  const { register, handleSubmit,reset  } = useForm();
+const UpdateTask = () => {
+  const [task, setTask] = useState([]);
+  const { user } = useAuth();
+  const [tasks, isLoading, refetch] = useGetTasks()
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:5000/task/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setTask(res);
+        console.log(res);
+      });
+  }, [id]);
+
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    // console.log(data)
-  // console.log(moment().format('llll'))
-  const time = moment().format('llll')
-    const taskData ={...data, email: user?.email, time}
-    axios.post('http://localhost:5000/POST/tasks', taskData)
-    .then(res=>{
-      console.log('res.data ',res.data)
-      if (res.data.insertedId) {
+    console.log(data)
+    // console.log(moment().format('llll'))
+    const time = moment().format("llll");
+    const taskData = { ...data, email: user?.email, time };
+    axios.put(`http://localhost:5000/PUT/tasks/${id}`, taskData).then((res) => {
+      console.log("res.data ", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch()
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Your work has been saved",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
-        reset()
-        navigate('/')
+        reset();
+        navigate("/");
       }
-    })
+    });
   };
   return (
     <div>
@@ -44,6 +58,7 @@ const AddTask = () => {
                   {...register("title", { required: true, maxLength: 50 })}
                   type="text"
                   placeholder="Task Title"
+                  defaultValue={task?.title}
                   className="input input-bordered"
                   required
                 />
@@ -53,13 +68,17 @@ const AddTask = () => {
                   <span className="label-text">Task Description</span>
                 </label>
                 <input
-                  {...register("description", {
-                    required: false,
+                  {...register("description", 
+                    {
+                    required: true,
                     maxLength: 200,
-                  })}
+                  }
+                )}
                   type="text"
+                  defaultValue={task?.description}
                   placeholder="Task Description"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -67,10 +86,8 @@ const AddTask = () => {
                   <span className="label-text">Your Email</span>
                 </label>
                 <input
-                 
                   type="text"
                   defaultValue={user?.email}
-                 
                   className="input input-bordered"
                   disabled
                 />
@@ -91,7 +108,7 @@ const AddTask = () => {
 
               <div className="form-control mt-6">
                 <button className="btn btn-primary" type="submit">
-                  Login
+                  Update
                 </button>
               </div>
             </form>
@@ -102,4 +119,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default UpdateTask;
