@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import moment from "moment";
 
 const AddTask = () => {
@@ -14,7 +14,7 @@ const AddTask = () => {
   // console.log(moment().format('llll'))
   const time = moment().format('llll')
     const taskData ={...data, email: user?.email, time}
-    axios.post('http://localhost:5000/POST/tasks', taskData)
+    axios.post('https://todo-server-assignment.vercel.app/POST/tasks', taskData)
     .then(res=>{
       console.log('res.data ',res.data)
       if (res.data.insertedId) {
@@ -32,9 +32,9 @@ const AddTask = () => {
   };
   return (
     <div>
-      <div className="hero bg-base-200 ">
+      <div className="hero  ">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card bg-[#DCD7C9] w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control">
                 <label className="label">
@@ -89,10 +89,11 @@ const AddTask = () => {
                 <option value="done">Done</option>
               </select>
 
-              <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
-                  Login
+              <div className="form-control mt-6 flex justify-between">
+                <button className="btn bg-[#2C3930] text-[#DCD7C9]" type="submit">
+                  Add Task
                 </button>
+                <Link className="btn bg-[#2C3930] text-[#DCD7C9]" to={'/'}>Home</Link>
               </div>
             </form>
           </div>

@@ -7,7 +7,7 @@ const useGetTasks = () => {
     const {data: tasks=[], isLoading, refetch} = useQuery({ 
         queryKey: ['todos', user?.email], 
         queryFn: async ()=>{
-            const data = await fetch(`http://localhost:5000/GET/tasks?email=${user?.email}`)
+            const data = await fetch(`https://todo-server-assignment.vercel.app/GET/tasks?email=${user?.email}`)
            return data.json()
         } 
     })

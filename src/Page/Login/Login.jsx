@@ -16,7 +16,7 @@ const Login = () => {
         email: res.user.email,
         
       }
-      axios.post('http://localhost:5000/users', userData)
+      axios.post('https://todo-server-assignment.vercel.app/users', userData)
       .then(res=>{
         console.log(res.data)
       })

@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -10,11 +11,11 @@ import useGetTasks from "../../hooks/useGetTasks";
 const UpdateTask = () => {
   const [task, setTask] = useState([]);
   const { user } = useAuth();
-  const [tasks, isLoading, refetch] = useGetTasks()
+  const [tasks, isLoading, refetch] = useGetTasks();
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/task/${id}`)
+    fetch(`https://todo-server-assignment.vercel.app/task/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setTask(res);
@@ -24,14 +25,14 @@ const UpdateTask = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     // console.log(moment().format('llll'))
     const time = moment().format("llll");
     const taskData = { ...data, email: user?.email, time };
-    axios.put(`http://localhost:5000/PUT/tasks/${id}`, taskData).then((res) => {
+    axios.put(`https://todo-server-assignment.vercel.app/PUT/tasks/${id}`, taskData).then((res) => {
       console.log("res.data ", res.data);
       if (res.data.modifiedCount > 0) {
-        refetch()
+        refetch();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -46,9 +47,9 @@ const UpdateTask = () => {
   };
   return (
     <div>
-      <div className="hero bg-base-200 ">
+      <div className="hero ">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card bg-[#DCD7C9]  w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control">
                 <label className="label">
@@ -68,12 +69,10 @@ const UpdateTask = () => {
                   <span className="label-text">Task Description</span>
                 </label>
                 <input
-                  {...register("description", 
-                    {
+                  {...register("description", {
                     required: true,
                     maxLength: 200,
-                  }
-                )}
+                  })}
                   type="text"
                   defaultValue={task?.description}
                   placeholder="Task Description"
@@ -106,10 +105,11 @@ const UpdateTask = () => {
                 <option value="done">Done</option>
               </select>
 
-              <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
+              <div className="form-control mt-6 flex justify-between">
+                <button className="btn bg-[#2C3930] text-[#DCD7C9]" type="submit">
                   Update
                 </button>
+                <Link className="btn bg-[#2C3930] text-[#DCD7C9]" to={'/'}>Home</Link>
               </div>
             </form>
           </div>
